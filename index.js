@@ -2,7 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import { loginValidator } from './validations.js'
 // import checkAuth from './utils/checkAuth.js'
-import { UserController } from './controllers/index.js'
+import { UserController, PizzaController } from './controllers/index.js'
 import handleValidationErrors from './utils/handleValidationErrors.js';
 import cors from 'cors';
 
@@ -20,7 +20,10 @@ let app = express();
 app.use(express.json());
 app.use(cors());
 
-app.post('/auth/login', loginValidator, handleValidationErrors, UserController.login)
+app.post('/auth/login', loginValidator, handleValidationErrors, UserController.login);
+app.get('/pizzas', PizzaController.pizza)
+app.post('/pizzas/create', PizzaController.create)
+app.delete('/pizzas/:id', PizzaController.remove)
 
 app.listen(4444, (err) => {
     if (err) {

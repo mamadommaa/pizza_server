@@ -1,11 +1,11 @@
 import mongoose from 'mongoose';
 
 const UserSchema = new mongoose.Schema({
-    password: {
+    email: {
         type: String,
         required: true,
     },
-    email: {
+    password: {
         type: String,
         required: true,
         unique: true,
