@@ -34,6 +34,8 @@ export const create =  async (req, res) => {
         console.log(sizes);
         let price = parseInt(myFreshData.price, 10);
         let rating = parseInt(myFreshData.rating, 10)
+        let discount = parseInt(myFreshData.discount, 10)
+
         console.log(price)
         console.log(rating)
 
@@ -45,7 +47,8 @@ export const create =  async (req, res) => {
             sizes: sizes,
             price: price,
             category: req.body.category,
-            rating: rating
+            rating: rating,
+            discount: discount
         })
 
         const post = await doc.save();

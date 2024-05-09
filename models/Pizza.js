@@ -31,6 +31,10 @@ const PizzaSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
+    discount: {
+        type: Number,
+        required: true,
+    },
 });
 
 export default mongoose.model('Pizza', PizzaSchema, "pizzas");
