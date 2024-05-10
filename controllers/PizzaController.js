@@ -1,8 +1,22 @@
 import PizzaModel from '../models/Pizza.js';
 
 export const pizza = async (req, res) => {
+    
     try {
-        const pizzas = await PizzaModel.find({});
+        console.log(req.query.sortBy)
+        let query = {};
+        if (req.query.category) {
+            query.category = req.query.category;
+        }
+
+        // Формируем объект для сортировки
+        let sortOptions = {};
+        if (req.query.sortBy) {
+            sortOptions[req.query.sortBy] = 1; // 1 для сортировки по возрастанию
+        }
+
+        // Ваш код для фильтрации и сортировки записей пицц по параметрам
+        const pizzas = await PizzaModel.find(query).sort(sortOptions).exec();
         res.json({
             pizzas
         });
@@ -13,6 +27,9 @@ export const pizza = async (req, res) => {
         });
     }
 };
+
+
+
 
 
 export const create =  async (req, res) => {
